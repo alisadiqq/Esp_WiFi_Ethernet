@@ -1,0 +1,49 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# sdkconfig.defaults  –  Waveshare ESP32-S3-POE-ETH (ESP32-S3R8)
+#
+# After cloning / opening for the first time, run once:
+#   idf.py set-target esp32s3
+# Then build normally:
+#   idf.py build
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Flash (16 MB, QIO) ────────────────────────────────────────────────────────
+CONFIG_ESPTOOLPY_FLASHSIZE_16MB=y
+CONFIG_ESPTOOLPY_FLASHMODE_QIO=y
+CONFIG_ESPTOOLPY_BAUD_921600B=y
+
+# ── PSRAM – ESP32-S3R8 has 8 MB OPI (Octal) PSRAM ───────────────────────────
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_OCT=y
+CONFIG_SPIRAM_SPEED_80M=y
+CONFIG_SPIRAM_BOOT_INIT=y
+CONFIG_SPIRAM_USE_MALLOC=y
+
+# ── Ethernet – W5500 via espressif/ethernet_init component (IDF ≥ 6.0) ──────
+# Internal EMAC not present on ESP32-S3
+CONFIG_ETHERNET_INTERNAL_SUPPORT=n
+# Enable SPI Ethernet
+CONFIG_ETHERNET_SPI_SUPPORT=y
+CONFIG_ETHERNET_SPI_DEV0_W5500=y
+CONFIG_ETHERNET_SPI_DEV1_NONE=y
+# SPI3_HOST = 2 (SPI1=0, SPI2=1, SPI3=2)
+CONFIG_ETHERNET_SPI_HOST=2
+# Waveshare ESP32-S3-POE-ETH pin assignments
+CONFIG_ETHERNET_SPI_SCLK_GPIO=13
+CONFIG_ETHERNET_SPI_MOSI_GPIO=11
+CONFIG_ETHERNET_SPI_MISO_GPIO=12
+CONFIG_ETHERNET_SPI_CLOCK_MHZ=25
+CONFIG_ETHERNET_SPI_CS0_GPIO=14
+CONFIG_ETHERNET_SPI_INT0_GPIO=10
+CONFIG_ETHERNET_SPI_PHY_RST0_GPIO=9
+
+# ── HTTP server – enlarge task stack for proxy workload ───────────────────────
+CONFIG_HTTPD_TASK_STACKSIZE=8192
+CONFIG_HTTPD_MAX_REQ_HDR_LEN=1024
+CONFIG_HTTPD_MAX_URI_LEN=512
+
+# ── Logging ───────────────────────────────────────────────────────────────────
+CONFIG_LOG_DEFAULT_LEVEL_INFO=y
+
+# ── FreeRTOS ──────────────────────────────────────────────────────────────────
+CONFIG_FREERTOS_HZ=1000

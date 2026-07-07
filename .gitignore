@@ -1,0 +1,38 @@
+# ESP-IDF build artefacts
+build/**
+!build/hue_proxy.bin
+!build/hue_proxy.elf
+!build/bootloader/bootloader.bin
+!build/partition_table/partition-table.bin
+
+# CMake / Ninja generated files (regenerated on every build)
+build/CMakeCache.txt
+build/CMakeFiles/
+build/cmake_install.cmake
+build/build.ninja
+build/compile_commands.json
+build/*.ninja
+build/config.env
+build/flash_*
+build/app-flash_*
+build/bootloader-flash_*
+build/partition-table-flash_*
+build/flasher_args*
+build/hints.yml
+build/kconfigs*
+build/ldgen_libraries*
+build/project_description.json
+build/project_elf_src_*.c
+build/x509_crt_bundle.S
+build/*.in
+
+# sdkconfig backup created by set-target
+sdkconfig.old
+
+# Managed components lock file (optional to commit)
+dependencies.lock
+
+# VS Code / OS
+.vscode/
+.DS_Store
+Thumbs.db
